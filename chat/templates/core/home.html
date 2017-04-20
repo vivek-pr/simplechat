@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h2>Homepage</h2>
+  <p>Hello {{ user.username }}!</p>
+
+<h1>Profiles</h1>
+<table>
+  <tr><th>Username</th><th>Email</th></tr>
+    {% for user in users %}
+  <tr>
+  <td><a href="{% url 'chat' person_id=user.id %}">{{ user.username }}</a></td>
+  <td>{{ user.email }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}
