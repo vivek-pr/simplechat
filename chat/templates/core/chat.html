@@ -344,23 +344,20 @@ input.textarea {
         </div>
     <ol class="chat">
         {% for message in serializer %}
-        {% if message.sender.usename == username.username %}
+        {% if message.recipient != username.id %}
         <li class="other">
         <div class="avatar"><img src="http://i.imgur.com/DY6gND0.png" draggable="false"/></div>
       <div class="msg">
-        <p>Hola!</p>
-        <p>{{message.message}} <emoji class="pizza"/></p>
-        <time>20:17</time>
+        <p>{{message.message}} </p>
+        <time>{{message.sent_at}}</time>
       </div>
     </li>
         {% else %}
         <li class="self">
         <div class="avatar"><img src="http://i.imgur.com/HYcn9xO.png" draggable="false"/></div>
       <div class="msg">
-        <p>Puff...</p>
-        <p>{{message.message}} <emoji class="books"/></p>
-        <p>Mejor otro día</p>
-        <time>20:18</time>
+        <p>{{message.message}} </p>
+        <time>{{message.sent_at}}</time>
       </div>
     </li>
         {% endif %}
