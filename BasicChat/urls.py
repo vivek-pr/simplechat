@@ -18,9 +18,12 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from chat import views
+from django.views.generic.base import RedirectView
+
 
 urlpatterns = [
-    url(r'^$', login_required(views.Home.as_view()), name='home'),
+    url(r'^$', RedirectView.as_view(url='/login/')),
+    url(r'^home/$', login_required(views.Home.as_view()), name='home'),
     url(r'^chat/(?P<person_id>[0-9]+)/', login_required(views.Chat.as_view()), name='chat'),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),

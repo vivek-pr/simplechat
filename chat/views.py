@@ -30,9 +30,9 @@ class Chat(APIView):
 
     def get(self, request, person_id, format=None):
         chat_partner = User.objects.get(id=person_id)
-        snippets = Message.objects.filter(Q(sender=chat_partner, recipient=request.user) |
+        messages = Message.objects.filter(Q(sender=chat_partner, recipient=request.user) |
                                        Q(sender=request.user, recipient=chat_partner))
-        serializer = MessageSerializers(snippets, many=True)
+        serializer = MessageSerializers(messages, many=True)
         return Response({'serializer':serializer.data, 'username':chat_partner})
 
     def post(self, request, person_id,  format=None):

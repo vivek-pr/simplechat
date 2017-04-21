@@ -381,7 +381,9 @@ $('#chat').on("keypress", function(e) {
             data :{'message':message, csrfmiddlewaretoken: '{{ csrf_token }}'} ,
             success : function(data)
             {
-                location.reload();           },
+                location.reload();
+                $("#chat").val('');
+                         },
 
             }
           );
